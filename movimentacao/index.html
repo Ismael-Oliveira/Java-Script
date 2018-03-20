@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+
+ <html lang="pt">    
+	 <head>
+		<meta charset=”UTF-8”>
+		<title>Colisao</title>        
+	</head>
+	
+	<style>
+		canvas{
+			border: 1px solid black;
+		}
+	</style>
+
+	<script>
+		
+	</script>
+	
+	 <body>        
+		<canvas id="canvas" width="600" height="600"></canvas>
+	 </body> 
+	 <script>
+	 
+		var UP = 38, DOWN = 40, LEFT = 37, RIGHT = 39;
+		var movL = false, movR = false, movU = false, movD = false;
+		
+		var canvas = document.querySelector("canvas");
+		var ctx = canvas.getContext("2d");
+		
+		window.addEventListener('keydown', keydownHandler);
+		window.addEventListener('keyup', keyUpHandler);
+		
+		var p1 = {
+			x: 10, y: 10
+		};
+		
+		update();
+		
+		function mover(){
+			if(movL){
+				p1.x--;
+			}
+			if(movR){
+				p1.x++;
+			}
+			if(movU){
+				p1.y--;
+			}
+			if(movD){
+				p1.y++;
+			}			
+		
+		}
+		
+		function keyUpHandler(e) {
+			var key = e.keyCode;
+			//console.log(key);
+			if(key == LEFT){
+				movL = false;
+			}
+			if(key == RIGHT){
+				movR = false;
+			}
+			if(key == UP){
+				movU = false;
+			}
+			if(key == DOWN){
+				movD = false;				
+			}			
+		}
+		
+		function keydownHandler(e){
+			var key = e.keyCode;
+		//	alert(key);
+			if(key == LEFT){
+				movL = true;
+				movR = movD = movU = false;
+			}
+			if(key == RIGHT){
+				movR = true;
+				movL = movD = movU = false;
+				
+			}
+			if(key == UP){
+				movU = true;
+				movR = movD = movL = false;
+			}
+			if(key == DOWN){
+				movD = true;
+				movR = movL = movU = false;
+				
+			}	
+			//render();
+		}
+		
+		function render(){
+			ctx.clearRect(0, 0, canvas.width, canvas.height);
+			ctx.fillRect(p1.x, p1.y, 50, 50);
+		}
+		
+		function update() {
+			requestAnimationFrame(update, canvas);
+			mover();render();
+		}
+		
+		
+		
+		
+
+	 </script>
+ </html>
