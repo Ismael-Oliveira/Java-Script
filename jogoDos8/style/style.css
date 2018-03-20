@@ -1,0 +1,58 @@
+*{
+	margin: 0;
+	padding: 0;
+	border: 0;
+}
+
+body{
+	background: #fff;
+}
+
+.panel{
+	width: 305px;
+	height: 305px;
+	border-radius: 10px;
+}
+
+.modal{
+	position: absolute;
+	transition: all 0.5s;
+}
+
+#startScreen{
+	background: url('../img/start.png');
+	opacity: 1;
+	z-index: 1;
+}
+
+#container{
+	position: relative;
+	margin: 50px auto;
+	background: #ccc;
+	border: outset;
+	box-shadow: 2px 2px 5px rgba(0,0,0,0.5);	
+}
+
+#overScreen{
+	background: url('../img/win.png');
+	opacity: 0;
+	z-index: -1;
+}
+
+.tile{
+	width: 90px;
+	height: 90px;
+	position: absolute;
+	transition: left .5s, top .5s;
+}
+
+.tile:hover{
+	border: inset;
+	border-radius: 10px;
+}
+
+.clicks {
+	margin: auto;
+	font-size: 20px;
+	text-align: center;
+}

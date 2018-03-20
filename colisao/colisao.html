@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+
+ <html lang="pt">    
+	 <head>
+		<meta charset=”UTF-8”>
+		<title>Colisao</title>        
+	</head>
+	
+	<style>
+		canvas{
+			border: 1px solid black;
+		}
+	</style>
+
+	<script>
+		
+	</script>
+	
+	 <body>        
+		<canvas id="canvas" width="600" height="600"></canvas>
+	 </body> 
+	 <script>
+	 
+		var UP = 38, LEFT = 37, DOWN = 40, RIGHT = 39;
+		var size = 50;
+		
+		var canvas = document.querySelector("canvas");
+		var ctx = canvas.getContext("2d");
+		var posX = 50;
+		var posY = 50;
+		var objColor= "#00f";
+		
+		var blockX = canvas.width/2 - 25;
+		var blockY = canvas.height/2 - 25;
+		
+		var mvLeft = mvUp = mvRight = mvDown = false;
+		
+		function updateBlock(){
+			if(mvLeft){
+				posX--;
+			}
+			if(mvRight){
+				posX++;
+			}
+			if(mvUp){
+				posY--;
+			}
+			if(mvDown){
+				posY++;
+			}
+			
+		}
+		
+		window.addEventListener("keydown",keyDownHandler,false);
+		window.addEventListener("keyup",keyUpHandler,false);
+		
+		function keyUpHandler(e){
+			var key = e.keyCode;
+			
+			switch(key){
+				case UP:
+					mvUp = false;
+					break;
+				case DOWN:
+					mvDown = false;;
+					break;
+				case LEFT:
+					mvLeft = false;
+					break;
+				case RIGHT:
+					mvRight = false;;
+					break;					
+			}		
+		}
+		
+		function keyDownHandler(e){
+			//console.log(e.keyCode);
+			var key = e.keyCode;
+			
+			switch(key){
+				case UP:
+					mvUp = true;
+					break;
+				case DOWN:
+					mvDown = true;
+					break;
+				case LEFT:
+					mvLeft = true;
+					break;
+				case RIGHT:
+					mvRight = true;
+					break;					
+			}
+		}
+		
+		function colide(){
+			if(posX + size > blockX &&
+			  posX < blockX + size &&
+			  posY + size > blockY &&
+			  posY < blockY + size){
+				objColor = "#f00";
+			  }else {
+				objColor = "#00f";
+			  }
+			 
+		}
+		
+		function update(){
+			updateBlock();
+			colide();
+		}
+		
+		function draw(){
+			ctx.clearRect(0,0,canvas.width,canvas.height);
+			ctx.fillStyle = "#000";
+			ctx.fillRect(blockX,blockY,size,size);
+			ctx.fillStyle = objColor;
+			ctx.fillRect(posX,posY,size,size);
+		}
+		
+		function loop(){
+			window.requestAnimationFrame(loop,canvas);
+			update();
+			draw();
+		}
+		
+		loop();
+	 </script>
+ </html>
