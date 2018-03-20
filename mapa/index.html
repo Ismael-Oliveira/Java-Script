@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+
+ <html lang="pt">    
+	 <head>
+		<meta charset=”UTF-8”>
+		<title>Mapa</title>        
+	</head>
+	
+	<style>
+		canvas{
+			border: 1px solid black;
+		}
+	</style>
+
+	<script>
+		
+	</script>
+	
+	 <body>        
+		<canvas id="canvas" width="400" height="400"></canvas>
+	 </body> 
+	 <script>
+	 	var UP = 38, DOWN = 40, LEFT = 37, RIGHT = 39; PGUP = 33, PGDOWN = 34;
+		
+		var canvas = document.querySelector("canvas");
+		var ctx = canvas.getContext("2d");
+		
+		var srcX = 0; srcY = 0; 
+		var size = 400;
+		var speed = 10;
+			
+		var map = new Image();
+		map.src = "img/map.png";
+		
+		map.onload = looping();
+		
+		window.addEventListener('keydown', keydownHandler, false);
+		
+		function keydownHandler(e) {
+			var key = e.keyCode;
+			console.log(key);
+			switch(key) {
+				case LEFT:
+					if(srcX > 1)
+						srcX -= speed;
+					break;
+				case RIGHT:
+					if(srcX < 4000)
+						srcX += speed;
+					break;
+				case UP:
+					if(srcY > 1)
+						srcY -= speed;
+					break;
+				case DOWN:
+					if(srcY < 1800)
+						srcY += speed;
+					break;
+				case PGUP:
+					size += speed;
+					break;	
+				case PGDOWN:
+					size -= speed ;
+					break;					
+			}
+		}
+		
+		function render() {
+			ctx.clearRect(0, 0, canvas.width, canvas.height);
+			ctx.drawImage(map,srcX,srcY,size,size,0,0,canvas.width,canvas.height);
+		}
+		
+		function update() {
+		
+		}
+		
+		function looping() {
+			requestAnimationFrame(looping,canvas);
+			render();
+		}
+		
+				
+	 </script>
+ </html>

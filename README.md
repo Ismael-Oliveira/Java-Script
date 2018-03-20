@@ -1,2 +1,4 @@
 # Java-Script
-Programas realizados com java script
+Estes aplicativos foram desenvolvidos com o objetivo principal de aprender sobre a linguagem de programação java Script.
+# Dependências
+Para rodar os Apps basta fazer o donload do projeto e executar o index.html dentro de cada pasta.
