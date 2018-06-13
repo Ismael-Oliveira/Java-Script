@@ -1,0 +1,25 @@
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+
+/*Cabeçário*/
+
+/*Botao*/
+button {
+    float: right;
+}
+
+/*Tipografia*/
+h1 {
+    font-size: 50px;
+    text-transform: uppercase;
+    color: black;
+}
+
+.result {
+    background: #f1f0f0;
+    border-radius: 5px;
+    padding: 5px 10px 20px 10px;
+}
